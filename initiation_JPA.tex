@@ -79,30 +79,6 @@
       } 
 }{}
 
-\usepackage{todonotes}
-\usepackage{tikz-er2}
-\usepackage{pgf-umlcd}
-\usetikzlibrary{decorations.text}
-\usetikzlibrary{decorations.markings}
-\usetikzlibrary{positioning}
-\usetikzlibrary{shadows}
-\usetikzlibrary{backgrounds}
-\tikzstyle{every entity} = [top color=white, 
-                            bottom color=blue!30, 
-                            draw=blue!50!black!100, 
-                            drop shadow]
-\tikzstyle{every weak entity} = [drop shadow={shadow xshift=.7ex, shadow yshift=-.7ex}]
-\tikzstyle{every attribute} = [top color=white, 
-                               bottom color=yellow!20, 
-                               draw=yellow, 
-                               node distance=1cm, 
-                               drop shadow]
-\tikzstyle{every relationship} = [top color=white, 
-                                  bottom color=yellow!20,  
-                                  draw=yellow, 
-                                  drop shadow]
-\tikzstyle{every isa} = [draw=blue!50!black!100]
-
 \usepackage[]{subfig}
 %\renewcommand{\thesubfigure}{Figure~\thefigure.\arabic{subfigure}}
 %\captionsetup[subfigure]{labelformat=simple,labelsep=colon, listofformat=subsimple}
@@ -159,24 +135,6 @@ marginparwidth=27mm}
          stringstyle=\ttfamily,
          showstringspaces=false
 }
-\pgfdeclarelayer{background}
-\pgfdeclarelayer{foreground}
-\pgfsetlayers{background,main,foreground}
-
-\newlength{\niveauZero}
-\newlength{\niveauUn}
-\newlength{\niveauDeux}
-\newlength{\niveauTrois}
-\newlength{\niveauQuatre}
-\newlength{\niveauCinq}
-
-\newlength{\colonneZero}
-\newlength{\colonneUn}
-\newlength{\colonneDeux}
-\newlength{\colonneTrois}
-\newlength{\colonneQuatre}
-\newlength{\colonneCinq}
-
 
 {\centering
     \mbox{
@@ -521,7 +479,7 @@ Lorsque nous lançons la classe \texttt{fr.univaix.iut.progbd.tutoJPA.App} plusi
 
 Regardons l'état de la base de données pour comprendre ce qui s'est passé.
 \begin{code_shell}
-$ mysql --user=monUser --password=monPassword employeBD
+\$ mysql --user=monUser --password=monPassword employeBD
 Reading table information for completion of table and column names
 You can turn off this feature to get a quicker startup with -A
 
@@ -567,7 +525,7 @@ mysql> select * from EMPLOYE;
 |   1 | Dupont |    5000 | NULL       |   NULL | NULL | NULL  |           NULL |
 +-----+--------+---------+------------+--------+------+-------+----------------+
 1 rows in set (0.00 sec)
-\end{code_shell}%$
+\end{code_shell}
 JPA associe une relation à chaque classe marquée par l'annotation \texttt{@Entity} et les données membres sont converties 
 en attribut. Il gère aussi les associations N:1 en créant la clef étrangère dont le nom est construit à partir du nom de 
 la clef et de la table liée. La classe \texttt{Adresse} est directement intégrée dans la table de l'entité \texttt{Employe}.
