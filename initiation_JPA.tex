@@ -25,67 +25,48 @@
 \usepackage{listings}
 \usepackage{textcomp}
  
-\definecolor{gray}{gray}{0.5} 
-\lstnewenvironment{code_xml}[1][]{ 
-    \lstset
-      { 
-        language=XML,
-        inputencoding=utf8,
-        basicstyle=\ttfamily\footnotesize, 
-        showspaces=false,
-        showstringspaces=false,
-        showtabs=false,
-        frame=single,
-        morecomment=[s]{<!--}{-->},
-        commentstyle=\itshape\color{gray},
-        stringstyle=\color{blue},
-        keywordstyle=\color{red},
-        markfirstintag=true,
-        upquote=true
-      } 
-}{}
+\definecolor{gray}{gray}{0.5}
 
-\lstnewenvironment{code_shell}[1][]{ 
-    \lstset
-      { 
-        language=sh,
-        inputencoding=utf8,
-        basicstyle=\ttfamily\footnotesize, 
-        showspaces=false,
-        showstringspaces=false,
-        showtabs=false,
-        frame=single,
-        commentstyle=\itshape\color{gray},
-        stringstyle=\color{blue},
-        keywordstyle=\color{red},
-        upquote=true
-      } 
-}{}
+\lstdefinestyle{customxml}{
+    language=XML,
+    inputencoding=utf8,
+    basicstyle=\ttfamily\footnotesize, 
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    morecomment=[s]{<!--}{-->},
+    commentstyle=\itshape\color{gray},
+    stringstyle=\color{blue},
+    keywordstyle=\color{red},
+    markfirstintag=true,
+    upquote=true
+} 
 
-\lstnewenvironment{code_java}[1][]{ 
-    \lstset
-      { 
-        language=java,
-        inputencoding=utf8,
-        basicstyle=\ttfamily\normalsize, 
-        showspaces=false,
-        showstringspaces=false,
-        showtabs=false,
-        frame=single,
-        commentstyle=\itshape\color{gray},
-        stringstyle=\color{blue},
-        keywordstyle=\color{red},
-        upquote=true
-      } 
-}{}
+\lstdefinestyle{customsh}{
+    language=sh,
+    inputencoding=utf8,
+    basicstyle=\ttfamily\footnotesize, 
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    commentstyle=\itshape\color{gray},
+    stringstyle=\color{blue},
+    keywordstyle=\color{red},
+    upquote=true
+} 
 
-\usepackage[]{subfig}
-%\renewcommand{\thesubfigure}{Figure~\thefigure.\arabic{subfigure}}
-%\captionsetup[subfigure]{labelformat=simple,labelsep=colon, listofformat=subsimple}
-%\captionsetup{lofdepth=2}
-%\makeatletter
-%\renewcommand{\p@subfigure}{}
-%\makeatother
+\lstdefinestyle{customjava}{
+    language=java,
+    inputencoding=utf8,
+    basicstyle=\ttfamily\footnotesize, 
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    commentstyle=\itshape\color{gray},
+    stringstyle=\color{blue},
+    keywordstyle=\color{red},
+    upquote=true
+} 
 
 \usepackage{geometry}
 \geometry{%
@@ -101,24 +82,6 @@ marginparwidth=27mm}
 
 \usepackage{rotating}
 
-\newenvironment{agrandirmarges}[2]{%
-\begin{list}{}{%
-\setlength{\topsep}{0pt}%
-\setlength{\listparindent}{\parindent}%
-\setlength{\itemindent}{\parindent}%
-\setlength{\parsep}{0pt plus 1pt}%
-\checkoddpage%
-\ifoddpage
-\setlength{\leftmargin}{-#1}\setlength{\rightmargin}{-#2}
-\else
-\setlength{\leftmargin}{-#2}\setlength{\rightmargin}{-#1}
-\fi}\item }%
-{\end{list}}
-
-\newcounter{compteurQuestion}
-\setcounter{compteurQuestion}{0}
-\newcommand{\Question}{\paragraph*{Question~\thecompteurQuestion~:}\addtocounter{compteurQuestion}{1}}
-
 \date{}
 \begin{document}
 \lstset{
@@ -127,12 +90,10 @@ marginparwidth=27mm}
          framesep=5pt,
          %samepage=true,
          tabsize=4,
-         basicstyle=\normalsize,
          frameround=ftft,
          keywordstyle=\ttfamily\color{SeaGreen4},
          identifierstyle=\ttfamily\bfseries\color{RoyalBlue4},
          commentstyle=\color{RoyalBlue3},
-         stringstyle=\ttfamily,
          showstringspaces=false
 }
 
@@ -192,15 +153,15 @@ système de gestion de dépendances de Maven.
 \subsection{Création du projet}
 Pour commencer, nous allons créer le projet de test que l'on nommera \texttt{tutoJPA} et qui sera dans le package 
 \texttt{fr.iut.univaix.progbd}. Pour se faire on utilise la commande Maven suivante : 
-\begin{code_shell}
+\begin{lstlisting}[language=sh,style=customsh]
 mvn archetype:generate -DinteractiveMode=false \
 -DarchetypeArtifactId=maven-archetype-quickstart \
 -DgroupId=fr.iut.univaix.progbd -DartifactId=tutoJPA
-\end{code_shell}
+\end{lstlisting}
 
 Une fois cette commande exécutée, il faut modifier le fichier \texttt{pom.xml} pour lui rajouter les dépendances 
 nécessaires à un projet JPA 2.0 :
-\begin{code_xml}
+\begin{lstlisting}[language=XML,style=customxml]
 <project xmlns="http://maven.apache.org/POM/4.0.0" 
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	       xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
@@ -242,7 +203,7 @@ nécessaires à un projet JPA 2.0 :
 		</repository>
 	</repositories>
 </project>
-\end{code_xml}
+\end{lstlisting}
 D'autres dépendances seront ajoutées au fur et à mesure de leur nécessité.
 
 \subsection{Création des classes métiers}
@@ -250,7 +211,7 @@ L'exemple utilisé dans ce paragraphe est similaire à celui présenté dans le 
 entreprise et les départements auxquels ils appartiennent. Il y aura donc 2 entités : \texttt{Employe} et 
 \texttt{Departement}. L'adresse d'un employé sera modélisée par une classe intégrée. Dans le modèle de persistance 
 JPA 2.0, un \emph{entity bean} est une simple classe java (un Pojo) complétée par de simples annotations :
-\begin{code_java}
+\begin{lstlisting}[language=Java,style=customjava]
 package fr.univaix.iut.progbd.tutoJPA;
 import javax.persistence.*;
 
@@ -282,7 +243,7 @@ public class Employe {
 		this.departement = departement; 
 	}
 }
-\end{code_java}
+\end{lstlisting}
 Notez la présence d'annotations à plusieurs endroits dans la classe \texttt{Employe} :
 \begin{enumerate}
 	\item Tout d'abord, l'annotation \texttt{@javax.persistence.Entity} permet à JPA de reconnaître cette classe comme une 
@@ -301,7 +262,7 @@ Notez la présence d'annotations à plusieurs endroits dans la classe \texttt{Em
 \end{enumerate}
 
 La classe \texttt{Departement} est elle aussi transformée en entité :
-\begin{code_java}
+\begin{lstlisting}[language=Java,style=customjava]
 package fr.univaix.iut.progbd.tutoJPA;
 import javax.persistence.*;
 
@@ -324,11 +285,11 @@ public class Departement {
 	public String getTelephone() { return telephone; }
 }
 
-\end{code_java}
+\end{lstlisting}
 
 La classe \texttt{Adresse} doit être annotée par l'annotation \texttt{@javax.persistence.Embeddable} pour pouvoir être 
 intégrée dans la classe \texttt{Employe} :
-\begin{code_java}
+\begin{lstlisting}[language=Java,style=customjava]
 package fr.univaix.iut.progbd.tutoJPA;
 import javax.persistence.*;
 
@@ -351,7 +312,7 @@ public class Adresse {
 	public String getCodePostal() { return codePostal; }
 	public String getVille() { return ville; }
 }
-\end{code_java}
+\end{lstlisting}
 \subsection{Contexte de persistance}
 Les paramètres de la connexion à la base de données sont définis dans le fichier \texttt{persistence.xml}. Ce fichier 
 doit être situé dans le dossier \texttt{META-INF} du \texttt{jar} de l’application. Ces paramètres seront utilisés par 
@@ -360,7 +321,7 @@ la suite par le gestionnaire d'entités pour établir la connexion au SGBD.
 Pour que Maven place ce fichier au bon endroit à la construction du \texttt{jar}, il le faut mettre dans le dossier 
 \texttt{src/main/resources/META-INF}.
 
-\begin{code_xml}
+\begin{lstlisting}[language=XML,style=customxml]
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <persistence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
@@ -382,12 +343,12 @@ Pour que Maven place ce fichier au bon endroit à la construction du \texttt{jar
     </properties>
   </persistence-unit>
 </persistence>
-\end{code_xml}
+\end{lstlisting}
 
 D'après le fichier \texttt{persistence.xml} l'application se connectera à la base \texttt{employeBD} du serveur MySQL 
 local avec l'utilisateur \texttt{"monUser"} et le mot de passe \texttt{"monPassword"}. Pour paramétrer correctement le 
 serveur local, il faut exécuter les commandes suivantes :
-\begin{code_shell}
+\begin{lstlisting}[language=sh,style=customsh]
 $mysql --user=root --password=mysql --execute="create database employeBD"
 $mysql --user=root --password=mysql \
        --execute="grant all privileges on employeBD.* to monUser@localhost identified by 'monPassword'"
@@ -399,9 +360,9 @@ $mysql --user=root --password=mysql --execute="show databases"
 | employeBD          |
 | mysql              |
 +--------------------+
-\end{code_shell}%$
+\end{lstlisting}
 
-\begin{code_shell}
+\begin{lstlisting}[language=sh,style=customsh]
 $mysql --user=monUser --password=monPassword
 Welcome to the MySQL monitor.  Commands end with ; or \g.
 Your MySQL connection id is 43
@@ -417,7 +378,7 @@ mysql> use employeBD;
 Database changed
 mysql> show tables;
 Empty set (0.00 sec)
-\end{code_shell}%$
+\end{lstlisting}
 Comme on peut le voir pour l'instant notre base de données est totalement vide.
 \subsection{Programme principal}
 Maintenant que l'entité \texttt{Employe} est développée et compilée, nous allons écrire une classe principale qui 
@@ -425,7 +386,7 @@ permettra de créer un objet \texttt{Employe} et de le rendre persistant. Pour c
 \texttt{EntityManager} par une factory, de démarrer une transaction, créer une instance de l'objet, 
 définir le nom et le salaire de l'employé, utilisez \texttt{EntityManager.persist()} pour l'insérer dans la base de données, 
 valider la transaction et fermer l'\texttt{EntityManager}.
-\begin{code_java}
+\begin{lstlisting}[language=Java,style=customjava]
 package fr.univaix.iut.progbd.tutoJPA;
 import javax.persistence.*;
 
@@ -449,9 +410,9 @@ public class App
         emf.close();
     }
 }
-\end{code_java}
+\end{lstlisting}
 Avant de lancer ce programme, il faut ajouter dans le fichier \texttt{pom.xml} les dépendances au connecteur MySQL et à EclipseLink :
-\begin{code_xml}
+\begin{lstlisting}[language=XML,style=customxml]
 <dependency>
 	<groupId>mysql</groupId>
 	<artifactId>mysql-connector-java</artifactId>
@@ -463,13 +424,13 @@ Avant de lancer ce programme, il faut ajouter dans le fichier \texttt{pom.xml} l
 	<artifactId>eclipselink</artifactId>
 	<version>2.2.0</version>
 </dependency>
-\end{code_xml}
+\end{lstlisting}
 Maintenant nous allons utiliser la commande Maven \texttt{clean compile} pour compiler notre projet et le plugin \texttt{exec} pour lancer 
 la classe principale.
-\begin{code_shell}
+\begin{lstlisting}[language=sh,style=customsh]
 $mvn clean compile
 $mvn exec:java -Dexec.mainClass="fr.univaix.iut.progbd.tutoJPA.App"
-\end{code_shell}
+\end{lstlisting}
 Lorsque nous lançons la classe \texttt{fr.univaix.iut.progbd.tutoJPA.App} plusieurs choses vont se produire :
 \begin{itemize}
   \item Comme la propriété \texttt{eclipselink.ddl-generation} est initialisée à \texttt{create-tables} dans le fichier 
@@ -478,8 +439,8 @@ Lorsque nous lançons la classe \texttt{fr.univaix.iut.progbd.tutoJPA.App} plusi
 \end{itemize}
 
 Regardons l'état de la base de données pour comprendre ce qui s'est passé.
-\begin{code_shell}
-\$ mysql --user=monUser --password=monPassword employeBD
+\begin{lstlisting}[language=sh,style=customsh]
+$ mysql --user=monUser --password=monPassword employeBD
 Reading table information for completion of table and column names
 You can turn off this feature to get a quicker startup with -A
 
@@ -525,7 +486,7 @@ mysql> select * from EMPLOYE;
 |   1 | Dupont |    5000 | NULL       |   NULL | NULL | NULL  |           NULL |
 +-----+--------+---------+------------+--------+------+-------+----------------+
 1 rows in set (0.00 sec)
-\end{code_shell}
+\end{lstlisting}
 JPA associe une relation à chaque classe marquée par l'annotation \texttt{@Entity} et les données membres sont converties 
 en attribut. Il gère aussi les associations N:1 en créant la clef étrangère dont le nom est construit à partir du nom de 
 la clef et de la table liée. La classe \texttt{Adresse} est directement intégrée dans la table de l'entité \texttt{Employe}.
