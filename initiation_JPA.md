@@ -38,9 +38,7 @@ Création du projet
 
 Pour commencer, nous allons créer le projet de test que l’on nommera `tutoJPA` et qui sera dans le package `fr.iut.univaix.progbd`. Pour se faire on utilise la commande Maven suivante :
 ```sh
-mvn archetype:generate -DinteractiveMode=false \
--DarchetypeArtifactId=maven-archetype-quickstart \
--DgroupId=fr.iut.univaix.progbd -DartifactId=tutoJPA
+mvn archetype:generate -DinteractiveMode=false -DarchetypeArtifactId=maven-archetype-quickstart -DgroupId=fr.iut.univaix.progbd -DartifactId=tutoJPA
 ```
 Une fois cette commande exécutée, il faut modifier le fichier `pom.xml` pour lui rajouter les dépendances nécessaires à un projet JPA 2.0 :
 ```XML
@@ -59,8 +57,8 @@ Une fois cette commande exécutée, il faut modifier le fichier `pom.xml` pour l
     <url>http://maven.apache.org</url>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>6</maven.compiler.source>
-        <maven.compiler.target>6</maven.compiler.target>
+        <maven.compiler.source>1.6</maven.compiler.source>
+        <maven.compiler.target>1.6</maven.compiler.target>
     </properties>
     
     <dependencies>
@@ -221,8 +219,7 @@ Pour que Maven place ce fichier au bon endroit à la construction du `jar`, il l
 D’après le fichier `persistence.xml` l’application se connectera à la base `employeBD` du serveur MySQL local avec l’utilisateur `"monUser"` et le mot de passe `"monPassword"`. Pour paramétrer correctement le serveur local, il faut exécuter les commandes suivantes :
 ```sh
 $mysql --user=root --password=mysql --execute="create database employeBD"
-$mysql --user=root --password=mysql \
-       --execute="grant all privileges on employeBD.* to monUser@localhost identified by 'monPassword'"
+$mysql --user=root --password=mysql --execute="grant all privileges on employeBD.* to monUser@localhost identified by 'monPassword'"
 $mysql --user=root --password=mysql --execute="show databases"
 +--------------------+
 | Database           |
@@ -280,7 +277,7 @@ public class App
 }
 ```
 
-Avant de lancer ce programme, il faut ajouter dans le fichier `pom.xml` les dépendances au connecteur MySQL et à EclipseLink :
+Avant de lancer ce programme, il faut ajouter dans le fichier `pom.xml` les dépendances au connecteur MySQL et à EclipseLink. Pour ajouter ces dépendances, il faut rajouter les lignes suivantes à l'interieur de la balise `dependencies`:
 ```XML
 <dependency>
     <groupId>mysql</groupId>
