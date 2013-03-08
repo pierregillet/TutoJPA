@@ -217,7 +217,7 @@ Pour que Maven place ce fichier au bon endroit à la construction du `jar`, il l
 ```
 
 D’après le fichier `persistence.xml` l’application se connectera à la base `employeBD` du serveur MySQL local avec l’utilisateur `"monUser"` et le mot de passe `"monPassword"`. Pour paramétrer correctement le serveur local, il faut exécuter les commandes suivantes :
-```sh
+```
 $mysql --user=root --password=mysql --execute="create database employeBD"
 $mysql --user=root --password=mysql --execute="grant all privileges on employeBD.* to monUser@localhost identified by 'monPassword'"
 $mysql --user=root --password=mysql --execute="show databases"
@@ -304,7 +304,7 @@ Lorsque nous lançons la classe `fr.univaix.iut.progbd.tutoJPA.App` plusieurs ch
 -   L’employé "Dupont" est inséré dans la base de données (avec un identifiant automatiquement généré).
 
 Regardons l’état de la base de données pour comprendre ce qui s’est passé.
-```sh
+```
 $ mysql --user=monUser --password=monPassword employeBD
 Reading table information for completion of table and column names
 You can turn off this feature to get a quicker startup with -A
