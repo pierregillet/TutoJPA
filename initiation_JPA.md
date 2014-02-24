@@ -38,7 +38,7 @@ Création du projet
 
 Pour commencer, nous allons créer le projet de test que l’on nommera `tutoJPA` et qui sera dans le package `fr.iut.univaix.progbd`. Pour se faire on utilise la commande Maven suivante :
 ```sh
-mvn archetype:generate -DinteractiveMode=false -DarchetypeArtifactId=maven-archetype-quickstart -DgroupId=fr.iut.univaix.progbd -DartifactId=tutoJPA
+mvn archetype:generate -DinteractiveMode=false -DarchetypeArtifactId=maven-archetype-quickstart -DgroupId=fr.univaix.iut.progbd.tutoJPA -DartifactId=tutoJPA
 ```
 Une fois cette commande exécutée, il faut modifier le fichier `pom.xml` pour lui rajouter les dépendances nécessaires à un projet JPA 2.0 :
 ```XML
