@@ -8,13 +8,12 @@
         <class>fr.univ_amu.iut.tutoJPA.Employe</class>
         <class>fr.univ_amu.iut.tutoJPA.Departement</class>
         <class>fr.univ_amu.iut.tutoJPA.Adresse</class>
+
         <properties>
-            <property name="javax.persistence.jdbc.url"
-                      value="jdbc:mysql://localhost:3306/employeBD"/>
-            <property name="javax.persistence.jdbc.driver"
-                      value="com.mysql.jdbc.Driver"/>
-            <property name="javax.persistence.jdbc.user"  value="monUser"/>
-            <property name="javax.persistence.jdbc.password"  value="monPassword"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/tpjava_tp1"/>
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+            <property name="javax.persistence.jdbc.user"  value="tpjava"/>
+            <property name="javax.persistence.jdbc.password"  value="tpjava"/>
             <property name="eclipselink.ddl-generation"  value="create-tables"/>
         </properties>
     </persistence-unit>

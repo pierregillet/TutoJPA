@@ -10,11 +10,11 @@
         <class>fr.univ_amu.iut.tutoJPA.Adresse</class>
 
         <properties>
-            <property name="eclipselink.target-database" value="Derby" />
-            <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.EmbeddedDriver" />
-            <property name="javax.persistence.jdbc.url" value="jdbc:derby:memory:employeBD;create=true" />
-            <property name="javax.persistence.jdbc.user" value="" />
-            <property name="javax.persistence.jdbc.password" value="" />
+            <property name="eclipselink.target-database" value="mysql" />
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/tpjava_tp1" />
+            <property name="javax.persistence.jdbc.user" value="tpjava" />
+            <property name="javax.persistence.jdbc.password" value="tpjava" />
             <property name="eclipselink.logging.level" value="INFO" />
             <property name="eclipselink.ddl-generation.output-mode" value="database"/>
             <property name="eclipselink.ddl-generation"  value="create-tables"/>
